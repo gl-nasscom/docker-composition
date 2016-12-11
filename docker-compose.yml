@@ -1,0 +1,22 @@
+dockerized-api-gateway:
+  image: 'glnasscom/api-gateway'
+  links:
+    - dockerized-eureka-server
+  ports:
+    - '8081:8081'
+dockerized-eureka-server:
+  image: 'glnasscom/eureka-server'
+  ports:
+    - '8761:8761'
+dockerized-customer-service:
+  image: 'glnasscom/customer-core-service'
+  links:
+    - dockerized-eureka-server
+  ports:
+    - '8094:8094'
+dockerized-product-service:
+  image: 'glnasscom/product-core-service'
+  links:
+    - dockerized-eureka-server
+  ports:
+    - '9094:9094'
